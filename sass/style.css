@@ -1,7 +1,4 @@
-@font-face{
-    font-family: '__ZonaProFont_26cd01', '__ZonaProFont_Fallback_26cd01', Arial, sans-serif ;
-    src: url(./fonts/);
-}
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
@@ -300,7 +297,6 @@ body {
     font-size: 30px;
     line-height: 45px;
     font-weight: bold;
-    font-family: '__ZonaProFont_26cd01', '__ZonaProFont_Fallback_26cd01', Arial, sans-serif;
     
 }
 

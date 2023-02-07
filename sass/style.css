@@ -1,6 +1,11 @@
+@font-face{
+    font-family: '__ZonaProFont_26cd01', '__ZonaProFont_Fallback_26cd01', Arial, sans-serif ;
+    src: url(./fonts/);
+}
 *, *::after, *::before {
     box-sizing: border-box;
 }
+
 header {
     position: absolute;
     top: 60px;
@@ -273,6 +278,137 @@ body {
     width: 70%;
     line-height: 4.4rem;
 }
+
+/*section-about*/
+
+.aboutus-section {
+    padding: 50px 0;
+}
+.aboutus-title {
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: 32px;
+    margin: 0 0 39px;
+    padding: 0 0 11px;
+    position: relative;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.aboutus-text {
+    color: #000000;
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: bold;
+    font-family: '__ZonaProFont_26cd01', '__ZonaProFont_Fallback_26cd01', Arial, sans-serif;
+    
+}
+
+
+
+.feature .feature-box .feature-content p {
+    color: #0f0f0f;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+
+.feature .feature-box .feature-content {
+    float: right;
+    padding-left: 28px;
+    width: 78%;
+    margin-top: 10px;
+}
+
+/*design-section*/
+.design-section {
+    padding: 50px 0;
+}
+
+.design-feature .design-feature-box .design-feature-content p {
+    color: #0f0f0f;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+
+.design-feature .design-feature-box .design-feature-content {
+    float: right;
+    padding-left: 28px;
+    width: 78%;
+    margin-top: 10px;
+}
+
+/*development*/
+
+.development-section {
+    padding: 50px 0;
+}
+
+.development-feature .development-feature-box .development-feature-content p {
+    color: #0f0f0f;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+
+.development-feature .development-feature-box .developemnt-feature-content {
+    float: right;
+    padding-left: 28px;
+    width: 78%;
+    margin-top: 10px;
+    padding-left: 28px;
+}
+
+/*maintainence*/
+
+.maintainence-section {
+    padding: 50px 0;
+}
+
+.maintainence-feature .maintainence-feature-box .maintainence-feature-content p {
+    color: #0f0f0f;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+
+.maintainence-feature .maintainence-feature-box .maintainence-feature-content {
+    float: right;
+    padding-left: 28px;
+    width: 78%;
+    margin-top: 10px;
+    padding-left: 28px;
+}
+
+/*testimonals*/
+.testimonal-section {
+    padding: 50px 0;
+}
+
+.testimonal-feature .testimonal-feature-box .testimonal-feature-content p {
+    color: #0f0f0f;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+
+.testimonal-feature .testimonal-feature-box .testimonal-feature-content {
+    float: right;
+    padding-left: 28px;
+    width: 78%;
+    margin-top: 10px;
+    padding-left: 28px;
+}
+
+
+
+
 
 
 /* copy styles */

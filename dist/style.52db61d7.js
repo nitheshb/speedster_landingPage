@@ -117,227 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/index.js":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-// import Cursor from "./cursor";
-// import { gsap } from "gsap";
-// import { gsap } from "gsap";
-// import { lerp, getMousePos, getSiblings } from "./utils";
-// Grab the mouse position and set it to mouse state
-var mouse = {
-  x: 0,
-  y: 0
-};
-window.addEventListener("mousemove", function (ev) {
-  return mouse = getMousePos(ev);
-});
-
-var Cursor = /*#__PURE__*/function () {
-  function Cursor(el) {
-    var _this = this;
-
-    _classCallCheck(this, Cursor);
-
-    // Varibles
-    this.Cursor = el;
-    this.Cursor.style.opacity = 0;
-    this.Item = document.querySelectorAll(".hero-inner-link-item");
-    this.Hero = document.querySelector(".hero-inner");
-    this.bounds = this.Cursor.getBoundingClientRect();
-    this.cursorConfigs = {
-      x: {
-        previous: 0,
-        current: 0,
-        amt: 0.2
-      },
-      y: {
-        previous: 0,
-        current: 0,
-        amt: 0.2
-      }
-    };
-
-    this.onMouseMoveEv = function () {
-      _this.cursorConfigs.x.previous = _this.cursorConfigs.x.current = mouse.x;
-      _this.cursorConfigs.y.previous = _this.cursorConfigs.y.previous = mouse.y; // Set cursor opacity to 1 when hovered on screen
-
-      gsap.to(_this.Cursor, {
-        duration: 1,
-        ease: "Power3.easeOut",
-        opacity: 1
-      }); // Execute scale function
-
-      _this.onScaleMouse(); // The window.requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint. The method takes a callback as an argument to be invoked before the repaint.
-
-
-      requestAnimationFrame(function () {
-        return _this.render();
-      }); // Clean up function
-
-      window.removeEventListener("mousemove", _this.onMouseMoveEv);
-    }; // Scale cursor animation
-
-
-    window.addEventListener("mousemove", this.onMouseMoveEv);
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
 
-  _createClass(Cursor, [{
-    key: "onScaleMouse",
-    value: function onScaleMouse() {
-      var _this2 = this;
+  return bundleURL;
+}
 
-      // Loop through all items
-      this.Item.forEach(function (link) {
-        // If I am hovering on the item for on page load I want to scale the cursor media
-        if (link.matches(":hover")) {
-          _this2.setVideo(link);
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-          _this2.ScaleCursor(_this2.Cursor.children[0], 0.8);
-        } //On mouse enter scale the media-cursor to .8
-
-
-        link.addEventListener("mouseenter", function () {
-          _this2.setVideo(link);
-
-          _this2.ScaleCursor(_this2.Cursor.children[0], 0.8);
-        }); //On mouse enter scale the media-cursor to 0
-
-        link.addEventListener("mouseleave", function () {
-          _this2.ScaleCursor(_this2.Cursor.children[0], 0);
-        }); //Hover on a tag to expand to 1.2
-
-        link.children[1].addEventListener("mouseenter", function () {
-          _this2.Cursor.classList.add("media-blend");
-
-          _this2.ScaleCursor(_this2.Cursor.children[0], 1.2);
-        }); // Bring scale back down .8
-
-        link.children[1].addEventListener("mouseleave", function () {
-          _this2.Cursor.classList.remove("media-blend");
-
-          _this2.ScaleCursor(_this2.Cursor.children[0], 0.8);
-        });
-      });
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
-  }, {
-    key: "setVideo",
-    value: function setVideo(el) {
-      // Grab the data-video-src and make sure it matches the video that should be displayed
-      var src = el.getAttribute("data-video-src");
-      var video = document.querySelector("#".concat(src));
-      var siblings = getSiblings(video);
-
-      if (video.id == src) {
-        gsap.set(video, {
-          zIndex: 4,
-          opacity: 1
-        });
-        siblings.forEach(function (i) {
-          gsap.set(i, {
-            zIndex: 1,
-            opacity: 0
-          });
-        });
-      }
-    }
-  }, {
-    key: "ScaleCursor",
-    value: function ScaleCursor(el, amount) {
-      gsap.to(el, {
-        duration: 0.6,
-        scale: amount,
-        ease: "Power3.easeOut"
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      this.cursorConfigs.x.current = mouse.x;
-      this.cursorConfigs.y.current = mouse.y; // lerp
-
-      for (var key in this.cursorConfigs) {
-        // key will be x & y
-        // WTF IS LERP?
-        // Lerp - A lerp returns the value between two numbers at a specified, decimal midpoint:
-        this.cursorConfigs[key].previous = lerp(this.cursorConfigs[key].previous, this.cursorConfigs[key].current, this.cursorConfigs[key].amt);
-      } // Setting the cursor x and y to our cursoer html element
-
-
-      this.Cursor.style.transform = "translateX(".concat(this.cursorConfigs.x.previous, "px) translateY(").concat(this.cursorConfigs.y.previous, "px)"); // RAF
-
-      requestAnimationFrame(function () {
-        return _this3.render();
-      });
-    }
-  }]);
-
-  return Cursor;
-}();
-
-var body = document.querySelector("body");
-
-window.onload = function () {
-  body.classList.remove("loading");
-  gsap.from(body, {
-    opacity: 0,
-    duration: 1,
-    ease: "Power3.easeInOut"
-  });
-  var cursor = new Cursor(document.querySelector(".cursor"));
-}; // Linear interpolation
-
-
-var lerp = function lerp(a, b, n) {
-  return (1 - n) * a + n * b;
-}; // Gets the mouse position
-
-
-var getMousePos = function getMousePos(e) {
-  var posx = 0;
-  var posy = 0;
-  if (!e) e = window.event;
-
-  if (e.clientX || e.clientY) {
-    posx = e.clientX;
-    posy = e.clientY;
   }
 
-  return {
-    x: posx,
-    y: posy
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
   };
-}; // Get sibilings
 
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
 
-var getSiblings = function getSiblings(e) {
-  // for collecting siblings
-  var siblings = []; // if no parent, return no sibling
+var cssTimeout = null;
 
-  if (!e.parentNode) {
-    return siblings;
-  } // first child of the parent node
-
-
-  var sibling = e.parentNode.firstChild; // collecting siblings
-
-  while (sibling) {
-    if (sibling.nodeType === 1 && sibling !== e) {
-      siblings.push(sibling);
-    }
-
-    sibling = sibling.nextSibling;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
   }
 
-  return siblings;
-};
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"sass/style.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -541,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/index.js"], null)
-//# sourceMappingURL=/js.00a46daa.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/style.52db61d7.js.map

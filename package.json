@@ -1,5 +1,6 @@
 {
   "name": "cursorto",
+  "description": "Cuberto home cursor using GSAP speedster landing page",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
